@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/day1013.iml" filepath="$PROJECT_DIR$/day1013.iml" />
       <module fileurl="file://$PROJECT_DIR$/java20261013.iml" filepath="$PROJECT_DIR$/java20261013.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javalearning.iml" filepath="$PROJECT_DIR$/javalearning.iml" />
     </modules>
   </component>
 </project>
