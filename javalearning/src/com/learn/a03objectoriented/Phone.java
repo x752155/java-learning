@@ -1,4 +1,4 @@
-package com.learn.objectoriented;
+package com.learn.a03objectoriented;
 
 // java bean类 没有main方法
 // 	类名 大驼峰

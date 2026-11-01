@@ -1,4 +1,4 @@
-package com.learn.arithmeticoperator;
+package com.learn.a01arithmeticoperator;
 
 public class Arithmeticoperator {
     public static void main(String[] args) {

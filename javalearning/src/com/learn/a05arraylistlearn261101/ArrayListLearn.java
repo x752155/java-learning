@@ -1,4 +1,4 @@
-package com.learn.arraylistlearn20261101;
+package com.learn.a05arraylistlearn261101;
 
 import java.util.ArrayList;
 import java.util.Objects;

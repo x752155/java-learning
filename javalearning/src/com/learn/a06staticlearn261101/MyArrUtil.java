@@ -1,4 +1,4 @@
-package com.learn.staticlearn20261101;
+package com.learn.a06staticlearn261101;
 
 public class MyArrUtil {
 

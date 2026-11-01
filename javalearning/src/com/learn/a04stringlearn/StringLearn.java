@@ -1,4 +1,4 @@
-package com.learn.stringlearn;
+package com.learn.a04stringlearn;
 
 import java.util.StringJoiner;
 

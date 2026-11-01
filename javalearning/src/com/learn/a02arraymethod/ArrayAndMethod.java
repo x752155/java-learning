@@ -1,4 +1,4 @@
-package com.learn.arraymethod;
+package com.learn.a02arraymethod;
 
 public class ArrayAndMethod {
 
