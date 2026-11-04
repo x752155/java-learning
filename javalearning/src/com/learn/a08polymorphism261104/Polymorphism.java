@@ -73,9 +73,9 @@ public class Polymorphism {
 				}
 
 				// jdk 16语法糖
-				if(fa1 instanceof  Son son){
-						son.sonSpecialMethod();
-				}
+				// if(fa1 instanceof  Son son){
+				// 		son.sonSpecialMethod();
+				// }
 
 
 

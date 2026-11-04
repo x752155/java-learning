@@ -6,6 +6,7 @@ public class Father {
 
 		public String publicValue = "Father public value";
 
+		protected String protectedValue = "protectedVale";
 
 		public Father() {
 		}
