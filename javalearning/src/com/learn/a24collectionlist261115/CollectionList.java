@@ -1,13 +1,15 @@
-package com.learn.a24collectionlearn261115;
+package com.learn.a24collectionlist261115;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
-public class CollectionLearn {
+public class CollectionList {
 		public static void main(String[] args) {
 				// 20261115 22:45 -> 23:16
 				// 185 -> 186
+
+				// 20261116 20:44 -> 21:04
+				// 187 -> 188
+				// 189 数据结构 190 ArrayList源码 191 LinkedList 源码 跳过
 
 
 				// 单列集合 -> Collection（接口）
@@ -50,14 +52,54 @@ public class CollectionLearn {
 				while (iterStrList.hasNext()){
 						System.out.print(iterStrList.next()); // abcdefg
 				}
+				System.out.println();
 				// iterStrList.next(); // 报错 NoSuchElementException
 				//1. 遍历完成后，指针不会复位 -> 重新获取新的迭代器对象
 				//2. 循环中，只能使用一次next -> 使用前，检查hasnext()，如果有就能调用
 				//3. 遍历时，不能用集合的方式增改
 
 
-				// 增强for循环
+				// 增强for循环 -> 只有单列集合 和 数组 才能使用增强for遍历
+				for(String item:arrStrList){
+						System.out.print(item);
+				}
+				System.out.println();
+				// 快捷键 arrStrList.for
+				// 修改增强for中的变量 item 不会修改arrStrList
 
+				// jdk 8 -> lambda表达式 -> 与js相同
+				arrStrList.forEach( item ->{
+						System.out.print(item);
+				});
+				System.out.println();
+
+
+
+				// List的特殊方法 -> 增删改查等 略
+				// 循环 -> 上述三种 + 普通for循环（因为存在索引） + 列表迭代器
+				List<Integer> list = new ArrayList<Integer>();
+				list.add(0, 111);
+				list.add(0, 222);
+				list.add(0, 333);
+				System.out.println(list); // [333, 222, 111]
+
+				//列表迭代器
+				ListIterator<Integer> listIter = list.listIterator(); // 迭代器的子接口
+				// 存在previous() 和 hasPrevious()方法
+				// 支持add和remove
+				while (listIter.hasNext()){
+						Integer i = listIter.next();
+						if(i == 111){
+								listIter.add(1);
+						}
+				}
+				System.out.println(list); // [333, 222, 111, 1]
+
+
+				// ArrayList的源码和使用 略
+
+				// LinkedList -> 双向链表 查询慢 增删快
+				// 存在对First和Last的增删改查 特有方法  其他和list和collection的方法相同
 
 
 				// 2. Set（接口）下面都是实现类 -> 无序 不重复 无索引
