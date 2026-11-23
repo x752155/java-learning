@@ -8,6 +8,7 @@ public class GenericsClass {
 
 				// 20261116 21:17 -> 22:01
 				// 192 -> 193
+				// 194 -> 196 数据结构 tree 跳过
 
 				// 泛型 在编译阶段 约束数据类型 并进行检查
 				List<Integer> list = new ArrayList<Integer>();
