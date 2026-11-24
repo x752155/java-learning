@@ -1,19 +1,23 @@
 package com.learn.a27reflect261123;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Parameter;
+import java.lang.reflect.*;
 
 public class ReflectLearn {
-		public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+		public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
 
 				// 下 1 -> 190暂时跳过 涉及io流 字符集 网络 异常等
 				// 20261123 21:05 -> 21：54
 				// 下 191 -> 193
 
+				// 20261124 21:13 -> 21:48
+				// 下 194 -> 195
+				// 196 197练习跳过
+
 				// 反射 -> 允许对封装类的字段 方法 和 构造函数的信息 进行编程式访问
 				// 类之类 使用之使用 对象之对象
+
+
 
 				// 1. 获取class对象
 				// 1.1 Class.forName("类名") -> 源代码阶段 xxx.java
@@ -93,9 +97,102 @@ public class ReflectLearn {
 
 
 
-				// 3. 字段 Field
+				// 3. 获取成员变量 Field
+				// Field[] getFields() -> 获取所有公共成员变量数组
+				// Field[] getDeclaredFields() -> 获取 所有 成员变量数组
+				// Field getField(String name) -> 获取单个公共成员变量对象
+				// Field getDeclaredField(String name) -> 获取单个成员变量对象
+				Field[] publicFields = clazz.getFields();
+				// 如下 两个public变量
+				// public java.lang.String[] com.learn.a27reflect261123.ReflectExampleClass.publicFieldArr
+				// public java.lang.Double com.learn.a27reflect261123.ReflectExampleClass.publicFieldDouble
+				for(Field field : publicFields){
+						System.out.println(field);
+				}
+				// getDeclaredFields() 同上
+
+				// 获取特定field
+				Field field = clazz.getDeclaredField("protectedFiledBool");
+				System.out.println(" === 获取成员变量 字段 权限修饰符 === " + field.getModifiers()); //  === 获取成员变量 字段 权限修饰符 === 4
+				System.out.println(" === 获取成员变量 字段 名称 === " + field.getName());  //  === 获取成员变量 字段 名称 === protectedFiledBool
+				System.out.println(" === 获取成员变量 字段 类型 === " + field.getType()); //  === 获取成员变量 字段 类型 === class java.lang.Boolean
+
+
+				// void set(Object obj, Object value) -> 赋值
+				// Object get(Object obj) -> 获取值
+				// 必须通过对象 set/get
+				System.out.println(" === get 获取对象的 成员变量值 === " + field.get(rec2)); //  === get 获取对象的 成员变量值 === null （因为这个bool没有赋值）
+				field.set(rec2, true); // 赋值
+				System.out.println(" === get 获取对象的 成员变量值 === " + field.get(rec2)); // === get 获取对象的 成员变量值 === true ( 此时进行了赋值 ）
+
 
 				// 4. 成员方法 Method
+				// Method[] getMethods() -> 相同 获取 所有的public 方法 重要！ 包含父类的所有公共方法
+				// Method[] getDeclaredMethods()
+				// Method getMethod(String name, Class<?>...parameterTypes)
+				// Method getDeclaredMethod(String name, Class<?>...parameterTypes)
+
+
+				Method[] allMethods = clazz.getMethods();
+				// 如下：很多 -> 因为包含父类的
+				// public java.lang.String com.learn.a27reflect261123.ReflectExampleClass.getName()
+				// public java.lang.String com.learn.a27reflect261123.ReflectExampleClass.toString()
+				// public void com.learn.a27reflect261123.ReflectExampleClass.setName(java.lang.String)
+				// public java.lang.Integer com.learn.a27reflect261123.ReflectExampleClass.getId()
+				// public void com.learn.a27reflect261123.ReflectExampleClass.setId(java.lang.Integer)
+				// public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
+				// public final void java.lang.Object.wait() throws java.lang.InterruptedException
+				// public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
+				// public boolean java.lang.Object.equals(java.lang.Object)
+				// public native int java.lang.Object.hashCode()
+				// public final native java.lang.Class java.lang.Object.getClass()
+				// public final native void java.lang.Object.notify()
+				// public final native void java.lang.Object.notifyAll()
+				for(Method m : allMethods){
+						System.out.println(m);
+				}
+
+				System.out.println(" ==== 分割线 ====== ");
+				// 如下：获取本类的 所有方法
+				// public java.lang.String com.learn.a27reflect261123.ReflectExampleClass.getName()
+				// public java.lang.String com.learn.a27reflect261123.ReflectExampleClass.toString()
+				// public void com.learn.a27reflect261123.ReflectExampleClass.setName(java.lang.String)
+				// public java.lang.Integer com.learn.a27reflect261123.ReflectExampleClass.getId()
+				// public void com.learn.a27reflect261123.ReflectExampleClass.setId(java.lang.Integer)
+				// protected void com.learn.a27reflect261123.ReflectExampleClass.protectedFunc(java.lang.String)
+				// private void com.learn.a27reflect261123.ReflectExampleClass.privateFunc(java.lang.Integer,java.lang.Boolean)
+				Method[] allDeclaredMethods = clazz.getDeclaredMethods();
+				for(Method m : allDeclaredMethods){
+						System.out.println(m);
+				}
+
+				System.out.println(" ==== 分割线 ====== ");
+
+				// 获取特定的method 必须有参数 -> 因为有重载 同名的存在
+				Method method = clazz.getDeclaredMethod("protectedFunc", String.class);
+
+				System.out.println(" === 获取方法的 修饰符 === " + method.getModifiers() );
+				Parameter[] methodParams = method.getParameters();
+				for(Parameter p : methodParams){
+						System.out.println(p); // java.lang.String arg0
+				}
+
+				// 获取方法抛出的异常
+				Class[] exceptionTypes = method.getExceptionTypes();
+				for (Class exceptionType : exceptionTypes) {
+						// 略 能够打印所有 throws 的异常类型
+				}
+
+				// 唤起方法 obj -> 调用方法的对象 -> 类似 js 的 call apply ？
+				Object result = method.invoke(rec2, "唤起方法"); //  === protectedFunc === 唤起方法
+				// 存在返回值 可以接收
+
+
+
+				// 反射作用
+				// -> 获取一个类里的信息 -> 获取后执行其他逻辑
+				// -> 结合配置文件 -> 动态创建对象 并且调用方法 -> spring配置文件原理（后面来补充吧）
+
 
 		}
 }

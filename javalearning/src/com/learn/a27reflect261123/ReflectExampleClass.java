@@ -2,9 +2,14 @@ package com.learn.a27reflect261123;
 
 public class ReflectExampleClass {
 
+
+
+		// 以下有四个成员变量
 		private Integer id;
 		private String name;
-
+		public  String[] publicFieldArr;
+		protected Boolean protectedFiledBool;
+		public  Double publicFieldDouble;
 
 
 		// public 构造方法1
@@ -55,4 +60,13 @@ public class ReflectExampleClass {
 		public void setName(String name) {
 				this.name = name;
 		}
+
+
+		protected  void protectedFunc(String example){
+				System.out.println(" === protectedFunc === " + example);
+		};
+
+		private void privateFunc(Integer intVal, Boolean boolVal){
+				System.out.println(" === privateFunc === " + intVal + " " + boolVal);
+		};
 }
