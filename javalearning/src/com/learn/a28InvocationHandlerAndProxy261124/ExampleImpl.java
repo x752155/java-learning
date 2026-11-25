@@ -1,4 +1,4 @@
-package com.learn.a28InvocationHandlerAndProxy261124.Example;
+package com.learn.a28InvocationHandlerAndProxy261124;
 
 public class ExampleImpl implements  ExampleInterface{
 
@@ -22,8 +22,8 @@ public class ExampleImpl implements  ExampleInterface{
 		}
 
 		@Override
-		public String  method1(){
-				System.out.println("==== 这里被代理的方法 1 ====");
+		public String  method1(String str){
+				System.out.println("==== 这里被代理的方法 1 ==== " + str);
 				return "123";
 		}
 
